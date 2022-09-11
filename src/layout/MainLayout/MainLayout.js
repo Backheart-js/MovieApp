@@ -9,15 +9,15 @@ import styles from "./MainLayout.module.scss"
 
 function MainLayout({ children }) {
   return (
-    <>
-        <Sidebar />
-        <div >
-            <Header />
-            <div className={clsx(styles.content)}>
-              {children}
-            </div>
+    <div className={clsx()}>
+        <Header />
+        <div className={clsx('flex')}>
+          <Sidebar />
+          <div className={clsx(styles.content)}>
+            {children}
+          </div>
         </div>
-    </>
+    </div>
   )
 }
 
