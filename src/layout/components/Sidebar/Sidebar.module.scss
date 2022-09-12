@@ -1,0 +1,34 @@
+.sidebarWrapper {
+
+}
+
+.sidebarItem {
+    position: relative;
+    padding-left: 50px;
+    transition: all .2s ease-in;
+
+    &::after {
+        content: "";
+        display: none;
+        position: absolute;
+        height: 100%;
+        width: 6px;
+        left: 0;
+        top: 0;
+        background-color: var(--primary-color);
+        transition: all .2s ease-in;
+    }
+
+    &:hover {
+        &::after {
+            display: block;
+        }
+    }
+}
+
+.sidebarLink {
+    display: flex;
+    font-size: 17px;
+    font-weight: 600;
+    transition: all .2s ease-in;
+}

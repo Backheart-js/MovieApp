@@ -1,5 +1,3 @@
-import { Route } from "react-router-dom";
-
 import configRouter from "../config/router";
 import Home from "../pages/Home"
 import Catalog from "../pages/Catalog"
