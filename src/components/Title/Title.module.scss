@@ -1,0 +1,13 @@
+.titleLink {
+    display: inline-block;
+    min-width: 180px;
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #E5E5E5;
+    transition: all .2s ease-out;
+
+    &:hover {
+        color: var(--white-color);
+    }
+}

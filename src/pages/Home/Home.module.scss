@@ -1,0 +1,14 @@
+.homeListWrapper {
+    padding: 0 60px;
+    position: relative;
+    touch-action: pan-y;
+
+    .trendingMoviesListWrapper {
+        margin-top: 10px;
+    }
+
+    .homeCarousel+.homeCarousel {
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+}

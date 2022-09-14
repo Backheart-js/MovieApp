@@ -1,9 +1,18 @@
 .header {
-    background-color: var(--secondary-color);
+    background-image: linear-gradient(180deg, rgb(29, 32, 36), transparent);
 }
 
 .headerLogo {
     color: var(--primary-color);
+}
+
+
+.headerLink {
+    padding: 4px 4px;
+
+    &+.headerLink {
+        margin-left: 40px;
+    }
 }
 
 .headerNotiContainer, 

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.scss';
-import MainLayout from './layout/MainLayout/MainLayout';
 import router from './router';
 
 function App() {
@@ -12,12 +11,13 @@ function App() {
           {
             router.map((route, index) => {
               const Page = route.component;
+              const Layout = route.layout;
 
               return (
                 <Route key={index} path={route.path} element={
-                  <MainLayout>
-                    <Page/>
-                  </MainLayout>
+                  <Layout>
+                    <Page layout={route.layout}/>
+                  </Layout>
                 } />
               ) 
             })
