@@ -1,0 +1,61 @@
+.slickItem {
+    position: relative;
+    padding: 1px 6px;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.02);
+
+        .overlay {
+            background-color: rgba($color: #000000, $alpha: .5);
+
+            .slickItemBtn {
+                display: flex;
+            }            
+        }
+    }
+}
+
+.slickImg {
+}
+
+.overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    right: 6px;
+    transition: all .2s ease-in-out;
+}
+
+.slickItemBtn {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.funcBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    opacity: .8;
+
+    &:hover {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.btnPlay {
+
+}
+.iconPlay {
+
+}

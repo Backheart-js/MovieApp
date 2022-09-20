@@ -1,0 +1,67 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle, transparent 0%, rgba(0,0,0, 8) 100%);
+}
+
+.billboard {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 36%;
+    top: 0;
+    bottom: 35%;
+    left: 120px;
+    z-index: 10;
+}
+
+.billboardTitle {
+    font-family: 'Netflix Sans';   
+    display: inline-block;
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 100%;
+    user-select: none;
+}
+
+.billboardDescription {
+    margin-top: 20px;
+    user-select: none;
+
+    .billboardDescText {
+        font-family: 'Netflix Sans';   
+        font-size: 18px;  
+        display: block;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+    }
+}
+
+.billboardBtnFunc {
+    display: flex;
+    margin-top: 32px;
+}
+
+.iconPlay {
+
+}
+.iconInfo {
+
+}
+
+@font-face {
+    font-family: Netflix Sans;
+    src: url('/assets/fonts/NetflixSans_W_Md.woff2');
+    font-weight: 600;
+}
+@font-face {
+    font-family: Netflix Sans;
+    src: url('/assets/fonts/NetflixSans_W_Rg.woff2');
+    font-weight: 400;
+}

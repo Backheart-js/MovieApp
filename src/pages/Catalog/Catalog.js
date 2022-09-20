@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function Catalog() {
+function Catalog({ data, ...props }) {
+  const [listData, setListData] = useState(data)
+
   return (
     <div>Catalog</div>
   )

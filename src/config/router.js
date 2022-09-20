@@ -2,7 +2,7 @@ const configRouter = {
     home: '/',
     search: '/:category/search/:keyword',
     catalog: '/:category',
-    detail: '/:category/:id'
+    detail: '/infomation/id=:id',
 }
 
 export default configRouter;

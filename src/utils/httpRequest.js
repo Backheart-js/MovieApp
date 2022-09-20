@@ -1,20 +1,30 @@
 import axios from "axios";
-import queryString from 'query-string';
+import qs from 'qs';
 
-import apiConfig from "./apiConfig";
+import apiConfig from "../config/apiConfig";
 
 const httpRequest = axios.create({
     baseURL: apiConfig.baseURL,
     headers: {
         'Content-Type': 'application/json',
     },
-    paramsSerializer: params => queryString({...params, api_key: apiConfig.apiKey}),
+    
+    paramsSerializer: function (params) {
+        return qs.stringify({...params, ...{api_key: apiConfig.apiKey}})
+      },
+     //Lỗi ở đây
 })
 
-export const get = async (path) => {
-    const response = await httpRequest.get(path)
+httpRequest.interceptors.request.use(async (config) => config);
 
-    return response.data;
-}
+httpRequest.interceptors.response.use((response) => {
+    if (response && response.data) {
+        return response.data.results;
+    }
+
+    return response;
+}, (error) => {
+    throw error;
+});
 
 export default httpRequest;
