@@ -1,11 +1,13 @@
 import React from 'react'
+import Button from '../Button'
 import styles from './Title.module.scss'
 
-function Title({ navigation, title }) {
+function Title({ navigation, title, button=false, buttonText, ...props }) {
   return (
-    <a href={`/${navigation}`} className={styles.titleLink}>
-        <div>{title}</div>
-    </a>
+    <div className={styles.titleLink}>
+        <div className='h-[35px]'>{title}</div>
+        {button && <Button className={styles.titleButton} outline to={`/${props.category}/genre=${props.type}`} btn_s rounded>{buttonText}</Button>}
+    </div>
   )
 }
 

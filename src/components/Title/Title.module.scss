@@ -1,13 +1,38 @@
 .titleLink {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     min-width: 180px;
+    height: 35px;
     margin-bottom: 16px;
     font-size: 22px;
     font-weight: 600;
     color: #E5E5E5;
+    user-select: none;
     transition: all .2s ease-out;
 
     &:hover {
         color: var(--white-color);
+
+        .titleButton {
+            display: block;
+        }
     }
+}
+
+.titleButton {
+    display: none;
+    margin-left: 40px;
+    animation: fadeIn .5s ease-in-out;
+}
+
+@keyframes fadeIn{
+    0% {
+        transform: translateX(-30%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
 }

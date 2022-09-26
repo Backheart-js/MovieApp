@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import HeroSlider, { Overlay, Slide, MenuNav } from "hero-slider";
+import HeroSlider, { Slide } from "hero-slider";
 
 import apiConfig from '../../config/apiConfig';
-import tmdbAPI, { movieType } from '../../utils/tmdbAPI';
+import tmdbAPI, { category, movieType, tvType } from '../../utils/tmdbAPI';
 import styles from './HeroSlider.module.scss';
 import clsx from 'clsx';
 import Button from '../Button';
@@ -15,23 +15,28 @@ function Heroslider({ ...props }) {
   useEffect(() => {
     const getMovie = async () => {
       const params = { 
-        page: 1,
+        page: Math.floor(Math.random() * 20),
       };
       try {
-        const response = await tmdbAPI.getMoviesList(movieType.popular, {params});
-        setMovieSlider(response.slice(13,18));
+        const randomSlider = Math.floor(Math.random() * 16);
+        let response = [];
+        props.category === category.movie ? 
+          response = await tmdbAPI.getMoviesList(movieType.popular, {params}) 
+          : 
+          response = await tmdbAPI.getTvList(tvType.popular, {params})
+        setMovieSlider(response.slice(randomSlider,randomSlider+4));
       } catch (error) {
         console.log(error);
       }
     }
     getMovie();
-  }, [])
+  }, [props.category])
 
   return (
     <HeroSlider
     height={"100vh"}
     autoplay={{
-      autoplayDuration: 6000
+      autoplayDuration: 8000
     }}
     controller={{
       initialSlide: 1,
@@ -52,7 +57,6 @@ function Heroslider({ ...props }) {
       {
         movieSlider.map((item, index) => {
           const background = `${apiConfig.originalImage(item.backdrop_path)}`
-          console.log(background);
           return (
             <Slide 
               key={index} 
@@ -65,7 +69,7 @@ function Heroslider({ ...props }) {
               <div className={styles.overlay}>
                 <div className={clsx(styles.billboard)}>
                   <div className={clsx(styles.billboardTitle, 'text-gray-200')} title={item.title}>
-                      {item.title}
+                      {item.title || item.name}
                   </div>
                   <div className={clsx(styles.billboardDescription)}>
                     <span className={clsx(styles.billboardDescText)}>
@@ -73,7 +77,7 @@ function Heroslider({ ...props }) {
                     </span>
                   </div>
                   <div className={clsx(styles.billboardBtnFunc)}>
-                    <Button to={`/view/id=${item.id}`}  primary rounded btn_xl className={clsx(styles.billboardBtnPlay)}>
+                    <Button to={`/view/${props.category}?id=${item.id}`}  primary rounded btn_xl className={clsx(styles.billboardBtnPlay)}>
                       <Icon className={clsx(styles.iconPlay, 'mr-2')} icon={faPlay} primary/>
                       Play
                     </Button>

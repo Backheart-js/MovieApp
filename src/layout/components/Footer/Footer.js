@@ -3,22 +3,22 @@ import React from 'react'
 function Footer() {
   return (
     
-<footer className="container bg-white dark:bg-[#1D2024]">
+<footer className="container bg-white dark:bg-black">
     <div className="grid grid-cols-2 gap-8 py-8 px-36 md:grid-cols-4">
         <div>
             <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Company</h2>
             <ul className="text-gray-500 dark:text-gray-400">
                 <li className="mb-4">
-                    <a href="#" className=" hover:underline">About</a>
+                    <a href="#" className=" hover:underline hover:text-[#F37515]">About</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Careers</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Careers</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Brand Center</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Brand Center</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Blog</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Blog</a>
                 </li>
             </ul>
         </div>
@@ -26,16 +26,16 @@ function Footer() {
             <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Help center</h2>
             <ul className="text-gray-500 dark:text-gray-400">
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Discord Server</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Discord Server</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Twitter</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Twitter</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Facebook</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Facebook</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Contact Us</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Contact Us</a>
                 </li>
             </ul>
         </div>
@@ -43,13 +43,13 @@ function Footer() {
             <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Legal</h2>
             <ul className="text-gray-500 dark:text-gray-400">
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Privacy Policy</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Privacy Policy</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Licensing</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Licensing</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Terms &amp; Conditions</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Terms &amp; Conditions</a>
                 </li>
             </ul>
         </div>
@@ -57,16 +57,16 @@ function Footer() {
             <h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">Download</h2>
             <ul className="text-gray-500 dark:text-gray-400">
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">iOS</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">iOS</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Android</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Android</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">Windows</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">Windows</a>
                 </li>
                 <li className="mb-4">
-                    <a href="#" className="hover:underline">MacOS</a>
+                    <a href="#" className="hover:underline hover:text-[#F37515]">MacOS</a>
                 </li>
             </ul>
         </div>

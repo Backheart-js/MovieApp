@@ -19,7 +19,7 @@ function Header() {
           <NavLink to="/movie" className={clsx(styles.headerLink, "text-gray-200 font-semibold", "items-center")}>
             <p>Movie</p>
           </NavLink>
-          <NavLink to="/tvseries" className={clsx(styles.headerLink, "text-gray-200 font-semibold", "items-center")}>
+          <NavLink to="/tv" className={clsx(styles.headerLink, "text-gray-200 font-semibold", "items-center")}>
             <p>TV Series</p>
           </NavLink>
           <NavLink to="/list" className={clsx(styles.headerLink, "text-gray-200 font-semibold", "items-center")}>

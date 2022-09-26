@@ -19,7 +19,9 @@ function SlickCarousel({ category, type, ...props }) {
         };
         try {
           const response = await tmdbAPI.getMoviesList(type, {params});
-          setGetList(response);
+          if (response !== undefined) {
+            setGetList(response);
+          }
         } catch (error) {
           throw error;
         }
@@ -32,14 +34,16 @@ function SlickCarousel({ category, type, ...props }) {
         };
         try {
           const response = await tmdbAPI.getTvList(type, {params});
-          setGetList(response);
+          if (response !== undefined) {
+            setGetList(response);
+          }
         } catch (error) {
           throw error;
         }
       }
       getTvseries();
     }  
-  }, [])
+  }, [category, type])
   
   return (
     <Slider
