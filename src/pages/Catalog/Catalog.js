@@ -44,7 +44,7 @@ function Catalog({ data, ...props }) {
   const loopTv = (key, index) => {
     return (
       <div key={index} className={clsx(styles.tvListWrapper, styles.list)}>
-        <Title title={(tvType[key].charAt(0).toUpperCase() + tvType[key].slice(1)).replace('_',' ')} 
+        <Title title={(tvType[key].charAt(0).toUpperCase() + tvType[key].slice(1)).replaceAll('_',' ')} 
                 button buttonText={'View more'} 
                 category={category.tv} 
                 type={tvType[key]}
@@ -67,9 +67,6 @@ function Catalog({ data, ...props }) {
     <div>
       <Heroslider category={category[paramsURL.category]}/>
       <br/>
-      <div className={styles.catalogTitle}>
-        <p className="text-5xl font-sans font-bold text-[#F37515] select-none">Movie</p>
-      </div>
       <div className={styles.homeListWrapper}>
       {
         (
