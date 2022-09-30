@@ -19,7 +19,7 @@ httpRequest.interceptors.request.use(async (config) => config);
 
 httpRequest.interceptors.response.use((response) => {
     if (response && response.data) {
-        return response.data.results;
+        return response.data;
     }
 
     return response;

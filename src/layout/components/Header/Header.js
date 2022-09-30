@@ -13,19 +13,23 @@ function Header() {
   let params = useParams();
 
   // Sự kiện scroll để hide header
+  let lastScrollTop = 0;
   const handleScroll = () => {
-    console.log(Header.current);
-    console.log(window.pageYOffset + 'px');
-    if (window.pageYOffset >= '100') {
+    if (window.pageYOffset < lastScrollTop) {
+      mainHeaderRef.current.style.display = 'grid'
+
+      if (window.pageYOffset < '100' ) {
+        Header.current.style.backgroundColor = 'transparent'
+      }
+    }
+    else {
       Header.current.style.backgroundColor = '#000'
       if (subHeaderRef.current) {
         mainHeaderRef.current.style.display = 'none';
       }
     }
-    else {
-      Header.current.style.backgroundColor = 'transparent'
-      mainHeaderRef.current.style.display = 'grid'
-    }
+
+    lastScrollTop = window.pageYOffset;
   }
 
   const subHeaderRender = (key, index) => {
@@ -34,7 +38,7 @@ function Header() {
 
     if (index === Object.keys(params).length - 1) {
       Link = 'span';
-      classes = "inline-flex items-center text-3xl font-semibold text-gray-200 select-none"
+      classes = "inline-flex items-center text-4xl font-semibold text-gray-100 select-none"
     }
   
     return (
@@ -62,7 +66,7 @@ function Header() {
   }, [])  
 
   return (
-    <header ref={Header} className={clsx(styles.header, 'container', 'flex flex-col', 'fixed z-10', 'top-0', 'inset-x-0', 'pl-12')}>
+    <header ref={Header} className={clsx(styles.header, 'container', 'flex flex-col', 'fixed z-10', 'top-0', 'inset-x-0', 'px-[60px]')}>
       <div ref={mainHeaderRef} className={clsx(styles.mainHeader,'container', 'h-[68px]', 'grid', 'grid-cols-12', 'gap-x-4', 'justify-center', 'items-center', )}>
         <div className={clsx(styles.headerLogoWrapper, 'col-span-2','text-left')}>
           <Link to="/" className={clsx(styles.headerLogo, 'text-2xl', 'font-bold', 'select-none')}>My cinema</Link>
@@ -81,7 +85,7 @@ function Header() {
               <p>My list</p>
             </NavLink>
         </div>
-        <div className={clsx(styles.headerFunctionWrapper, 'flex', 'justify-between', 'pl-16', 'pr-8', 'col-span-5', 'gap-x-4')}>
+        <div className={clsx(styles.headerFunctionWrapper, 'flex', 'justify-between', 'pl-16', 'col-span-5', 'gap-x-4')}>
           <div className={clsx(styles.headerSearchWrapper, 'basis-96')}>
             <form className="flex items-center justify-end">   
               <label htmlFor="simple-search" className="sr-only">Search</label>
@@ -102,7 +106,7 @@ function Header() {
         </div>
       </div>
       
-      {Object.keys(params).length >= 1 ?
+      {Object.keys(params).length >= 1 && params.category ?
         <nav ref={subHeaderRef} className={clsx(styles.subHeader, 'flex h-[68px]')} aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             {Object.keys(params).map((key, index) => subHeaderRender(key, index))}

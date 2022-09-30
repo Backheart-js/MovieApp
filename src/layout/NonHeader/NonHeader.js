@@ -2,19 +2,15 @@ import clsx from 'clsx'
 import React from 'react'
 import PropTypes from 'prop-types';
 
-import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
-import styles from "./MainLayout.module.scss"
+import styles from "./NonHeader.module.scss"
 import Footer from '../components/Footer';
 import Space from '../components/Space/Space';
 
 
-function MainLayout({ children }) {
+function NonHeader({ children }) {
   return (
     <div className={clsx()}>
-        <Header />
-        <Sidebar />
-        <div className={clsx('md:ml-[240px] md:w-[calc(100% - 240px)] mt-[68px]')}>
+        <div className={clsx('md:w-[100%]')}>
           <main className={clsx(styles.content, 'pb-8')}>
             {children}
           </main>
@@ -25,8 +21,8 @@ function MainLayout({ children }) {
   )
 }
 
-MainLayout.propTypes = {
+NonHeader.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default MainLayout
+export default NonHeader

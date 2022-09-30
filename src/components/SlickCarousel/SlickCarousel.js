@@ -20,7 +20,7 @@ function SlickCarousel({ category, type, ...props }) {
         try {
           const response = await tmdbAPI.getMoviesList(type, {params});
           if (response !== undefined) {
-            setGetList(response);
+            setGetList(response.results);
           }
         } catch (error) {
           throw error;
@@ -35,7 +35,7 @@ function SlickCarousel({ category, type, ...props }) {
         try {
           const response = await tmdbAPI.getTvList(type, {params});
           if (response !== undefined) {
-            setGetList(response);
+            setGetList(response.results);
           }
         } catch (error) {
           throw error;
@@ -52,7 +52,7 @@ function SlickCarousel({ category, type, ...props }) {
         {getList.map((item, index) => {
 
           return (
-            <SlickItem data={item} className={styles.slickItem} key={index} />
+            <SlickItem className={'py-1 px-2'} data={item} key={index} />
           )
         })}
     </Slider>

@@ -1,12 +1,12 @@
 .slickItem {
     position: relative;
-    padding: 1px 6px;
     transition: all .2s ease-in-out;
 
     &:hover {
         transform: scale(1.02);
 
         .overlay {
+            display: flex;
             background-color: rgba($color: #000000, $alpha: .5);
 
             .slickItemBtn {
@@ -16,24 +16,21 @@
     }
 }
 
-.slickImg {
-}
-
 .overlay {
     position: absolute;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     top: 0;
     bottom: 0;
-    left: 6px;
-    right: 6px;
+    left: 0;
+    right: 0;
     transition: all .2s ease-in-out;
 }
 
 .slickItemBtn {
     position: absolute;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;
@@ -52,11 +49,4 @@
         opacity: 1;
         transform: scale(1.2);
     }
-}
-
-.btnPlay {
-
-}
-.iconPlay {
-
 }

@@ -24,7 +24,7 @@ function Heroslider({ ...props }) {
           response = await tmdbAPI.getMoviesList(movieType.popular, {params}) 
           : 
           response = await tmdbAPI.getTvList(tvType.popular, {params})
-        setMovieSlider(response.slice(randomSlider,randomSlider+4));
+        setMovieSlider(response.results.slice(randomSlider,randomSlider+4));
       } catch (error) {
         console.log(error);
       }
