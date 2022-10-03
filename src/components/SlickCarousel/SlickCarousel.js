@@ -52,7 +52,7 @@ function SlickCarousel({ category, type, ...props }) {
         {getList.map((item, index) => {
 
           return (
-            <SlickItem className={'py-1 px-2'} data={item} key={index} />
+            <SlickItem className={'py-1 px-2'} data={item} key={index} category={category}/>
           )
         })}
     </Slider>

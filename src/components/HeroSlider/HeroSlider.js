@@ -81,7 +81,7 @@ function Heroslider({ ...props }) {
                       <Icon className={clsx(styles.iconPlay, 'mr-2')} icon={faPlay} primary/>
                       Play
                     </Button>
-                    <Button to={`/infomation/id=${item.id}`} secondary rounded btn_xl className={clsx(styles.billboardBtnPlay)}>
+                    <Button to={`/${props.category}/infomation/id=${item.id}`} secondary rounded btn_xl className={clsx(styles.billboardBtnPlay)}>
                       More infomation
                       <Icon className={clsx(styles.iconInfo, 'ml-2')} icon={faInfoCircle} secondary />
                     </Button>

@@ -7,11 +7,11 @@ import Button from '../Button';
 import Icon from '../Icon';
 import styles from './SlickCarousel.module.scss'
 
-function SlickItem({ data, className, ...props }) {
+function SlickItem({ data, className, category,...props }) {
   const poster = `${apiConfig.w500Image(data.poster_path)}`
 
   return (
-      <Link className={clsx(styles.slickItem, className)} to={`/infomation/id=${data.id}`} {...props}>
+      <Link className={clsx(styles.slickItem, className)} to={`/${category}/infomation/id=${data.id}`} {...props}>
         <img className={clsx(styles.slickImg ,'rounded-lg')} src={poster} alt={data.title}/>
         <div className={styles.overlay}>
           <div className={styles.slickItemBtn}>
@@ -23,7 +23,6 @@ function SlickItem({ data, className, ...props }) {
             </Button>
           </div>
         </div>
-        
       </Link>
   )
 }

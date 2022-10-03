@@ -3,15 +3,26 @@ import PropTypes from 'prop-types'
 
 import styles from './List.module.scss'
 import tmdbAPI from '../../utils/tmdbAPI';
-import Card from '../Card/Card';
 import SlickItem from '../SlickCarousel/SlickItem';
 import clsx from 'clsx';
 import Button from '../Button';
+import useDebounce from '../../hooks/useDebounce';
+import Item from './Item';
 
-function List({category, type}) {
+function List({category, type, keyword}) {
   const [listData, setListData] = useState([])
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState()
+  const [keyWord, setKeyWord] = useState()
+  const debounce = useDebounce(keyWord, 1000);
+  
+  console.log(category);
+
+  useEffect(() => {
+    setKeyWord(keyword);
+  
+  }, [keyword])
+  
 
   useEffect(() => {
     const getData = async () => {
@@ -25,12 +36,25 @@ function List({category, type}) {
           const response = await tmdbAPI.getMoviesList(type, {params});
           console.log(response);
           setListData(response.results);
-          // console.log(response.request);
-        } else if (category === 'tv') {
+          setTotalPage(response.total_pages)
+        } 
+        else if (category === 'tv') {
           const response = await tmdbAPI.getTvList(type, {params});
-          setListData(response.results);  
-        } else {
+          setListData(response.results);
+          setTotalPage(response.total_pages)  
+        } 
+        else if (category === 'search') {
+          const params = {
+            query: encodeURI(debounce),
+            page: page
+          }
 
+          let response = await tmdbAPI.search('movie', {params})
+          setListData(response.results);
+          console.log(listData);
+          response = await tmdbAPI.search('tv', {params})
+          setListData([...listData, ...response.results]);
+          setTotalPage(response.total_pages) 
         }
       } catch (error) {
             
@@ -38,8 +62,9 @@ function List({category, type}) {
     }
     
     getData();
-  }, [])
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debounce])
+  
   console.log(listData);
 
   const handleLoadMore = async () => {
@@ -56,8 +81,18 @@ function List({category, type}) {
       } else if (category === 'tv') {
         const response = await tmdbAPI.getTvList(type, {params});
         setListData(prev => [...prev, ...response.results]);  
-      } else {
-
+      } 
+      else if (category === 'search') {
+        const params = {
+          query: encodeURI(debounce),
+          page: page
+        }
+        console.log(debounce);
+        let response = await tmdbAPI.search('movie', {params})
+        setListData(response.results);
+        response = await tmdbAPI.search('tv', {params})
+        setListData([...listData, ...response.results]);
+        setTotalPage(response.total_pages) 
       }
     } catch (error) {
           
@@ -65,21 +100,20 @@ function List({category, type}) {
     setPage(prev => prev+1);
   }
 
+  console.log(listData);
   return (
     <div className="listMovie">
-      <div className='grid grid-cols-6 gap-6 container px-[60px]'>
+      <div className='grid lg:grid-cols-6 lg:gap-6 md:grid-col-4 md:gap-4 sm:grid-cols-3 sm:gap-3 container px-[60px]'>
         {listData.map((item, index) => (
-          <div className="" key={index}>
-            <SlickItem data={item}/>
-            <span title={item.name || item.original_name || item.original_title || item.title} className={clsx(styles.cardTitle,'text-base text-center font-bold tracking-tight text-gray-900 dark:text-white')}>
-              {item.name || item.original_name || item.original_title || item.title}
-            </span>
-          </div>
+            <Item data={item} category={category} key={index}/>
         ))}
       </div>
-      <div className="mt-8 flex justify-center">
-        <Button onClick={handleLoadMore} primary rounded btn_m>Load more</Button>
-      </div>
+      {
+        page < totalPage && 
+          <div className="mt-8 flex justify-center">
+            <Button onClick={handleLoadMore} primary rounded btn_m>Load more</Button>
+          </div>
+      }
     </div>
   )
 }

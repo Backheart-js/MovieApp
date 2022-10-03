@@ -4,10 +4,11 @@ import List from '../../components/List/List';
 
 function ListMovie() {
   const paramsURL = useParams();
+  console.log(paramsURL);
 
   return (
     <div className='mt-[140px]'>
-      <List category={paramsURL.category} type={paramsURL.type} />
+      <List category={paramsURL.category} type={paramsURL.type} keyword={paramsURL.keyword}/>
     </div>
   )
 }
