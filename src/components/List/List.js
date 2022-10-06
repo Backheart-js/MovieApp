@@ -14,10 +14,9 @@ function List({category, type, keyword}) {
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState()
   const [keyWord, setKeyWord] = useState()
+  const [classify, setClassify] = useState('movie');
   const debounce = useDebounce(keyWord, 1000);
   
-  console.log(category);
-
   useEffect(() => {
     setKeyWord(keyword);
   
@@ -42,6 +41,7 @@ function List({category, type, keyword}) {
           const response = await tmdbAPI.getTvList(type, {params});
           setListData(response.results);
           setTotalPage(response.total_pages)  
+          setClassify(category)
         } 
         else if (category === 'search') {
           const params = {
@@ -65,8 +65,6 @@ function List({category, type, keyword}) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounce])
   
-  console.log(listData);
-
   const handleLoadMore = async () => {
     const params = {
       page: page+1,
@@ -87,7 +85,6 @@ function List({category, type, keyword}) {
           query: encodeURI(debounce),
           page: page
         }
-        console.log(debounce);
         let response = await tmdbAPI.search('movie', {params})
         setListData(response.results);
         response = await tmdbAPI.search('tv', {params})
@@ -100,12 +97,11 @@ function List({category, type, keyword}) {
     setPage(prev => prev+1);
   }
 
-  console.log(listData);
   return (
     <div className="listMovie">
       <div className='grid lg:grid-cols-6 lg:gap-6 md:grid-col-4 md:gap-4 sm:grid-cols-3 sm:gap-3 container px-[60px]'>
         {listData.map((item, index) => (
-            <Item data={item} category={category} key={index}/>
+            <Item data={item} category={classify} key={index}/>
         ))}
       </div>
       {

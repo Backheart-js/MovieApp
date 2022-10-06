@@ -10,7 +10,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba($color: #000000, $alpha: 0.5);
+        background-color: rgba($color: #000000, $alpha: 0.6);
     }
     &::after {
         content: '';
@@ -26,13 +26,103 @@
 .informationWrapper {
     position: absolute;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     max-width: 1260px;
-    width: 70%;
-    height: 70%;
-    background-color: #fff;
+    width: 60%;
+    height: 60%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 4;
+}
+
+.posterWrapper {
+    height: 100%;
+    width: 40%;
+
+    .posterImg {
+        // width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+}
+
+.detailWrapper {
+    position: relative;
+    height: 100%;
+    width: 60%;
+    // flex-grow: 1;
+
+    .title {
+        margin-bottom: 12px;
+    }
+
+    .tagline {
+        width: 500px;
+        margin-bottom: 20px;
+
+        & > span {
+            font-size: 16px;
+            font-weight: 500;
+            display: block;
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+    }
+
+    .episode,
+    .genres,
+    .views,
+    .rating,
+    .releaseDate {
+        margin: 12px 0;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .genres {
+
+        .genreBox {
+            display: flex;
+            justify-content: center;
+            min-width: 100px;
+            padding: 3px 8px;
+            border: 2px solid;
+            border-radius: 20px;
+            transition: all 0.2s ease-in-out;
+            
+            &:hover {
+                cursor: pointer;
+                color: var(--primary-color);
+            }
+
+            &+.genreBox {
+                margin-left: 16px;
+            }
+        }
+    }
+
+    .rating {
+        display: flex;
+    }
+
+    .btnWrapper {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+// Video trailer css
+.videoWrapper {
+
+    &+.videoWrapper {
+        margin-top: 50px;
+    }
+}
+
+.videoTitle {
 }
