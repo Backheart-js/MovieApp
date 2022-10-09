@@ -11,13 +11,12 @@ function ListVideo({ category, id }) {
     useEffect(() => {
       const getData = async () => {
         const response = await tmdbAPI.getVideo(category, id);
-        console.log(response);
         setDataVideo(response.results.slice(0,4))
       }
 
       getData();
 
-    }, [])
+    }, [id])
 
   return (
     <div className='container'>
@@ -36,7 +35,6 @@ function Video({ data, ...props }) {
   useEffect(() => {
     const iframeTag = iframeRef.current 
     const height = iframeTag.offsetWidth * 9/16 + 'px';
-    console.log(height);
     iframeTag.setAttribute('height', height);
   }, [])
   

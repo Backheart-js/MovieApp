@@ -47,10 +47,6 @@ const tmdbAPI = {
     similar: (cate, id, params = {}) => {
         const url = `${category[cate]}/${id}/similar`;
         return httpRequest.get(url, params)
-    },
-    genre: (cate, params) => {
-        const url = `genre/${category[cate]}/list`;
-        return httpRequest.get(url, params)
     }
 }
 

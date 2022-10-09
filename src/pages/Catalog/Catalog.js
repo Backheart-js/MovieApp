@@ -7,6 +7,7 @@ import tmdbAPI, { category, movieType, tvType } from '../../utils/tmdbAPI';
 import SlickCarousel from '../../components/SlickCarousel/SlickCarousel'
 import Title from '../../components/Title/Title'
 import styles from './Catalog.module.scss'
+import Loader from '../../components/Loader/Loader';
 
 function Catalog({ data, ...props }) {
   let paramsURL = useParams();
@@ -14,9 +15,6 @@ function Catalog({ data, ...props }) {
 
   useLayoutEffect(() => {
     setTypeCategory(paramsURL.category);
-    
-    return () => {
-    }
   }, [paramsURL.category])
   
   const loopMovies = (key, index) => {
@@ -78,6 +76,7 @@ function Catalog({ data, ...props }) {
         )
       }
       </div>
+      <Loader dependencies={paramsURL.category} />
     </div>
   )
 }

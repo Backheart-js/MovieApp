@@ -9,13 +9,15 @@ function Search() {
     const navigate = useNavigate();
 
     const handleChange = (value) => {
-        setSearchValue(value)
-
-        if (value === '') {
-            navigate('/');
-        }
-        else {
-            navigate(`/search/keyword=${value}`)
+        if (!value.startsWith(' ')) {
+            setSearchValue(value)
+    
+            if (value === '') {
+                navigate('/');
+            }
+            else {
+                navigate(`/search/keyword=${value}`)
+            }
         }
     }
 

@@ -35,16 +35,33 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 4;
+
 }
 
 .posterWrapper {
     height: 100%;
     width: 40%;
+}
+
+.imgWrapper {
+    position: relative;    
+    height: 100%;
+    width: fit-content;
 
     .posterImg {
         // width: 100%;
         height: 100%;
         border-radius: 10px;
+    }
+    .btnWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 15%;
+        background-color: rgba($color: #000000, $alpha: 0.6);
     }
 }
 
@@ -55,7 +72,11 @@
     // flex-grow: 1;
 
     .title {
-        margin-bottom: 12px;
+        margin-bottom: 4px;
+
+        h1 {
+            line-height: 95%;
+        }
     }
 
     .tagline {
@@ -74,11 +95,12 @@
     }
 
     .episode,
+    .languages,
     .genres,
     .views,
     .rating,
     .releaseDate {
-        margin: 12px 0;
+        margin: 16px 0;
         font-size: 18px;
         font-weight: 500;
     }
@@ -100,19 +122,45 @@
             }
 
             &+.genreBox {
-                margin-left: 16px;
+                margin-left: 12px;
             }
         }
     }
 
-    .rating {
+    .languages {
         display: flex;
     }
 
-    .btnWrapper {
+    .languageText {
+        position: relative;
+
+        &+.languageText {
+            margin-left: 20px;
+
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: #06d2f6;
+        }
+    }
+    @for $i from 2 through 4 {
+        .languageText:nth-child(#{$i})::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: calc(50% - 2px);
+            width: 4px;
+            height: 4px;
+            background-color: #999;
+            border-radius: 50%;
+        }
+    }
+    
+    
+
+    .rating {
         display: flex;
-        position: absolute;
-        bottom: 0;
     }
 }
 
@@ -124,5 +172,57 @@
     }
 }
 
-.videoTitle {
+// Overview css
+.headerDetail {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: #999;
+}
+
+.contentDetail {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #f1f1f1;
+}
+
+// Casts css
+.ListCast {
+    margin-top: 12px;
+}
+
+.castCardWrapper {
+
+    &:hover {
+        cursor: pointer;
+
+        .castName {
+            color: var(--primary-color);
+        }
+    }
+}
+
+.castImg {
+    border-radius: 4px;
+}
+
+.castName {
+    text-align: center;
+    color: #f1f1f1;
+    user-select: none;
+}
+
+// Loader css
+.loader {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    transition: all .2s ease-in-out;
+    z-index: 5;
 }

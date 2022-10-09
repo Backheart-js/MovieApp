@@ -8,42 +8,58 @@ import tmdbAPI from '../../utils/tmdbAPI';
 import SlickItem from './SlickItem';
 import styles from './SlickCarousel.module.scss'
 
-function SlickCarousel({ category, type, ...props }) {
+function SlickCarousel({ category, type, id, ...props }) {
   const [getList, setGetList] = useState([])
 
   useEffect(() => {
-    if (category === 'movie') {
-      const getMovie = async () => {
+    if (type === 'similar') {
+      const getData = async () => {
         const params = {
           page: 1
         };
         try {
-          const response = await tmdbAPI.getMoviesList(type, {params});
-          if (response !== undefined) {
-            setGetList(response.results);
-          }
+          const response = await tmdbAPI.similar(category, id, {params});
+          setGetList(response.results);
         } catch (error) {
-          throw error;
+          console.log(error);
         }
       }
-      getMovie();
-    } else if (category === 'tv') {
-      const getTvseries = async () => {
-        const params = {
-          page: 1
-        };
-        try {
-          const response = await tmdbAPI.getTvList(type, {params});
-          if (response !== undefined) {
-            setGetList(response.results);
+      getData();
+    } 
+    else {
+      if (category === 'movie') {
+        const getMovie = async () => {
+          const params = {
+            page: 1
+          };
+          try {
+            const response = await tmdbAPI.getMoviesList(type, {params});
+            if (response !== undefined) {
+              setGetList(response.results);
+            }
+          } catch (error) {
+            throw error;
           }
-        } catch (error) {
-          throw error;
         }
+        getMovie();
+      } else if (category === 'tv') {
+        const getTvseries = async () => {
+          const params = {
+            page: 1
+          };
+          try {
+            const response = await tmdbAPI.getTvList(type, {params});
+            if (response !== undefined) {
+              setGetList(response.results);
+            }
+          } catch (error) {
+            throw error;
+          }
+        }
+        getTvseries();
       }
-      getTvseries();
-    }  
-  }, [category, type])
+    }
+  }, [category, type, id])
   
   return (
     <Slider

@@ -26,7 +26,7 @@ function Item({ data, className, category,...props }) {
           </div>
         </div>
         <span title={data.name || data.original_name || data.original_title || data.title} className={clsx(styles.itemTitle,'text-base font-bold tracking-tight text-gray-900 dark:text-white')}>
-          {data.name || data.original_name || data.original_title || data.title}
+          {data.name || data.title || data.original_name || data.original_title}
         </span>
       </Link>
   )

@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import Button from '../Button';
 import useDebounce from '../../hooks/useDebounce';
 import Item from './Item';
+import Loader from '../Loader/Loader';
 
 function List({category, type, keyword}) {
   const [listData, setListData] = useState([])
@@ -49,15 +50,15 @@ function List({category, type, keyword}) {
             page: page
           }
 
-          let response = await tmdbAPI.search('movie', {params})
-          setListData(response.results);
-          console.log(listData);
-          response = await tmdbAPI.search('tv', {params})
-          setListData([...listData, ...response.results]);
-          setTotalPage(response.total_pages) 
+          const dataMoive = await tmdbAPI.search('movie', {params})
+          const dataTv = await tmdbAPI.search('tv', {params})
+          const response = dataMoive.results.concat(dataTv.results);
+          console.log(response);
+          setListData(response);
+          setTotalPage(dataMoive.total_pages) 
         }
       } catch (error) {
-            
+          console.log(error);
       }
     }
     
@@ -97,6 +98,8 @@ function List({category, type, keyword}) {
     setPage(prev => prev+1);
   }
 
+  console.log(listData);
+
   return (
     <div className="listMovie">
       <div className='grid lg:grid-cols-6 lg:gap-6 md:grid-col-4 md:gap-4 sm:grid-cols-3 sm:gap-3 container px-[60px]'>
@@ -110,6 +113,7 @@ function List({category, type, keyword}) {
             <Button onClick={handleLoadMore} primary rounded btn_m>Load more</Button>
           </div>
       }
+      <Loader dependencies={debounce} />
     </div>
   )
 }
