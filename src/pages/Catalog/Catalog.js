@@ -1,9 +1,9 @@
 import clsx from 'clsx';
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Heroslider from '../../components/HeroSlider/HeroSlider';
 
-import tmdbAPI, { category, movieType, tvType } from '../../utils/tmdbAPI';
+import { category, movieType, tvType } from '../../utils/tmdbAPI';
 import SlickCarousel from '../../components/SlickCarousel/SlickCarousel'
 import Title from '../../components/Title/Title'
 import styles from './Catalog.module.scss'

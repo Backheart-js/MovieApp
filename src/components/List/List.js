@@ -6,23 +6,18 @@ import tmdbAPI from '../../utils/tmdbAPI';
 import SlickItem from '../SlickCarousel/SlickItem';
 import clsx from 'clsx';
 import Button from '../Button';
-import useDebounce from '../../hooks/useDebounce';
 import Item from './Item';
 import Loader from '../Loader/Loader';
+import { useParams } from 'react-router-dom';
 
-function List({category, type, keyword}) {
+function List({ type }) {
   const [listData, setListData] = useState([])
   const [page, setPage] = useState(1)
   const [totalPage, setTotalPage] = useState()
-  const [keyWord, setKeyWord] = useState()
+  // const [keyword, setkeyword] = useState()
   const [classify, setClassify] = useState('movie');
-  const debounce = useDebounce(keyWord, 1000);
-  
-  useEffect(() => {
-    setKeyWord(keyword);
-  
-  }, [keyword])
-  
+  const { category, keyword } = useParams()
+  // const debounce = useDebounce(keyword, 1000);
 
   useEffect(() => {
     const getData = async () => {
@@ -46,14 +41,13 @@ function List({category, type, keyword}) {
         } 
         else if (category === 'search') {
           const params = {
-            query: encodeURI(debounce),
+            query: encodeURI(keyword),
             page: page
           }
 
           const dataMoive = await tmdbAPI.search('movie', {params})
           const dataTv = await tmdbAPI.search('tv', {params})
           const response = dataMoive.results.concat(dataTv.results);
-          console.log(response);
           setListData(response);
           setTotalPage(dataMoive.total_pages) 
         }
@@ -64,7 +58,7 @@ function List({category, type, keyword}) {
     
     getData();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debounce])
+  }, [keyword])
   
   const handleLoadMore = async () => {
     const params = {
@@ -76,14 +70,13 @@ function List({category, type, keyword}) {
         //Call tmdbAPI
         const response = await tmdbAPI.getMoviesList(type, {params});
         setListData(prev => [...prev, ...response.results]);
-        // console.log(response.request);
       } else if (category === 'tv') {
         const response = await tmdbAPI.getTvList(type, {params});
         setListData(prev => [...prev, ...response.results]);  
       } 
       else if (category === 'search') {
         const params = {
-          query: encodeURI(debounce),
+          query: encodeURI(keyword),
           page: page
         }
         let response = await tmdbAPI.search('movie', {params})
@@ -98,10 +91,13 @@ function List({category, type, keyword}) {
     setPage(prev => prev+1);
   }
 
-  console.log(listData);
-
   return (
     <div className="listMovie">
+      {category === "search" && 
+      <div className='container px-[60px] mb-6'>
+        <span className='text-lg font-semibold text-gray-600'>Result for: </span>
+        <span className="text-3xl font-bold ml-2">{keyword}</span>
+      </div>}
       <div className='grid lg:grid-cols-6 lg:gap-6 md:grid-col-4 md:gap-4 sm:grid-cols-3 sm:gap-3 container px-[60px]'>
         {listData.map((item, index) => (
             <Item data={item} category={classify} key={index}/>
@@ -113,7 +109,7 @@ function List({category, type, keyword}) {
             <Button onClick={handleLoadMore} primary rounded btn_m>Load more</Button>
           </div>
       }
-      <Loader dependencies={debounce} />
+      <Loader dependencies={keyword} />
     </div>
   )
 }

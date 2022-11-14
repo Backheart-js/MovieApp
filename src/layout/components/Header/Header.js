@@ -2,7 +2,7 @@ import { faBell, faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import clsx from 'clsx'
 import React, { Fragment, useRef, useEffect } from 'react'
-import { NavLink, Link, useParams, useNavigate } from 'react-router-dom'
+import { NavLink, Link, useParams } from 'react-router-dom'
 import Search from '../../../components/Search/Search'
 
 import styles from './Header.module.scss'
